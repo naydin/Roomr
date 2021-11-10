@@ -25,24 +25,6 @@ class NetworkManager {
     
     private init() {}
     
-//    func make<R: Request>(request: R, completion: @escaping( (_ dto: R.responseDTO?) -> Void) ) {
-//        let urlRequest = URLRequest(url: request.url)
-//
-//        let task = session.dataTask(with: urlRequest) {(data, response, error) in
-//            guard let data = data else { return }
-//
-//            do {
-//                let dto = try JSONDecoder().decode(request.dto, from: data)
-//                completion(dto)
-//            } catch let error {
-//                print("\(error)")
-//                completion(nil)
-//            }
-//        }
-//
-//        task.resume()
-//    }
-    
     func make<R: Request>(request: R) async -> R.responseDTO? {
         let urlRequest = URLRequest(url: request.url)
         
