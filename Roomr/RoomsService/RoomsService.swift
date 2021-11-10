@@ -19,6 +19,7 @@ class RoomsService {
     
     func book(roomName: String) {
         Task {
+            await api.bookRoom()
             await database.book(roomName: roomName)
         }
     }

@@ -7,8 +7,14 @@
 
 import Foundation
 
+struct BookRoomRequest: Request {
+    var dto: RooomBookResponseDTO.Type = RooomBookResponseDTO.self
+    let url = URL(string: "https://wetransfer.github.io/bookRoom.json")!
+}
+
+struct RooomBookResponseDTO: DTO {}
+
 struct RoomListRequest: Request {
-    typealias responseDTO = RoomListResponseDTO
     var dto: RoomListResponseDTO.Type = RoomListResponseDTO.self
     let url = URL(string: "https://wetransfer.github.io/rooms.json")!
 }
@@ -36,5 +42,10 @@ class RoomsAPI {
                  spots: roomDTO.spots,
                  isBooked: false)
         }
+    }
+    
+    func bookRoom() async {
+        let request = BookRoomRequest()
+        _ = await NetworkManager.shared.make(request: request)
     }
 }
