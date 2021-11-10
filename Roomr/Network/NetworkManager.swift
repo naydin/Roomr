@@ -14,10 +14,7 @@ protocol Request {
     var dto: responseDTO.Type { get }
 }
 
-protocol DTO: Decodable {
-    
-}
-
+protocol DTO: Decodable {}
 
 class NetworkManager {
     static var shared = NetworkManager()
