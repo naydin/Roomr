@@ -30,7 +30,10 @@ struct RoomsView: View {
             .listStyle(.grouped)
         }
         .onAppear {
-            viewModel.syncData()
+            viewModel.startSyncingData()
+        }
+        .onDisappear {
+            viewModel.stopSyncingData()
         }
     }
 }
@@ -80,18 +83,22 @@ struct Room: Hashable {
 class RoomsViewModel: ObservableObject {
     @Published var rooms: [Room] = []
     private let service = RoomsService()
+    private var cancellables = Set<AnyCancellable>()
     
-    
-    func syncData() {
+    func startSyncingData() {
         Task {
-            let rooms = await service.getRooms()
-            await assign(rooms: rooms)
+            await service.start()
         }
+        service.roomsPublisher()
+            .receive(on: DispatchQueue.main)
+            .sink { _ in} receiveValue: { [weak self] rooms in
+                self?.rooms = rooms
+            }
+            .store(in: &cancellables)
     }
     
-    @MainActor
-    func assign(rooms: [Room]) {
-        self.rooms = rooms
+    func stopSyncingData() {
+        cancellables = Set<AnyCancellable>()
     }
 }
 

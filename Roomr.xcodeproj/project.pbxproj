@@ -18,6 +18,10 @@
 		767D5B6B273BCBD3002319E2 /* RoomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D5B6A273BCBD3002319E2 /* RoomsView.swift */; };
 		767D5B6E273BD67E002319E2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D5B6D273BD67E002319E2 /* NetworkManager.swift */; };
 		767D5B70273BDB01002319E2 /* RoomsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D5B6F273BDB01002319E2 /* RoomsService.swift */; };
+		767D5B73273BE7BA002319E2 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D5B72273BE7BA002319E2 /* DatabaseManager.swift */; };
+		767D5B75273BE7F0002319E2 /* RoomObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D5B74273BE7F0002319E2 /* RoomObject.swift */; };
+		767D5B78273BE8C4002319E2 /* RoomsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D5B77273BE8C4002319E2 /* RoomsDatabase.swift */; };
+		767D5B7A273BE9BF002319E2 /* RoomsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D5B79273BE9BF002319E2 /* RoomsAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +54,10 @@
 		767D5B6A273BCBD3002319E2 /* RoomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsView.swift; sourceTree = "<group>"; };
 		767D5B6D273BD67E002319E2 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		767D5B6F273BDB01002319E2 /* RoomsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsService.swift; sourceTree = "<group>"; };
+		767D5B72273BE7BA002319E2 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		767D5B74273BE7F0002319E2 /* RoomObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomObject.swift; sourceTree = "<group>"; };
+		767D5B77273BE8C4002319E2 /* RoomsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsDatabase.swift; sourceTree = "<group>"; };
+		767D5B79273BE9BF002319E2 /* RoomsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +110,8 @@
 		767D5B3A273BC98B002319E2 /* Roomr */ = {
 			isa = PBXGroup;
 			children = (
+				767D5B76273BE8AC002319E2 /* RoomsService */,
+				767D5B71273BE7B0002319E2 /* Database */,
 				767D5B6C273BD66A002319E2 /* Network */,
 				767D5B3B273BC98B002319E2 /* RoomrApp.swift */,
 				767D5B3F273BC98C002319E2 /* Assets.xcassets */,
@@ -140,9 +150,27 @@
 			isa = PBXGroup;
 			children = (
 				767D5B6D273BD67E002319E2 /* NetworkManager.swift */,
-				767D5B6F273BDB01002319E2 /* RoomsService.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		767D5B71273BE7B0002319E2 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				767D5B72273BE7BA002319E2 /* DatabaseManager.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		767D5B76273BE8AC002319E2 /* RoomsService */ = {
+			isa = PBXGroup;
+			children = (
+				767D5B6F273BDB01002319E2 /* RoomsService.swift */,
+				767D5B74273BE7F0002319E2 /* RoomObject.swift */,
+				767D5B77273BE8C4002319E2 /* RoomsDatabase.swift */,
+				767D5B79273BE9BF002319E2 /* RoomsAPI.swift */,
+			);
+			path = RoomsService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,6 +312,10 @@
 			files = (
 				767D5B6E273BD67E002319E2 /* NetworkManager.swift in Sources */,
 				767D5B6B273BCBD3002319E2 /* RoomsView.swift in Sources */,
+				767D5B73273BE7BA002319E2 /* DatabaseManager.swift in Sources */,
+				767D5B7A273BE9BF002319E2 /* RoomsAPI.swift in Sources */,
+				767D5B75273BE7F0002319E2 /* RoomObject.swift in Sources */,
+				767D5B78273BE8C4002319E2 /* RoomsDatabase.swift in Sources */,
 				767D5B70273BDB01002319E2 /* RoomsService.swift in Sources */,
 				767D5B3C273BC98B002319E2 /* RoomrApp.swift in Sources */,
 			);

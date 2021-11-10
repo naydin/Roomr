@@ -1,5 +1,5 @@
 //
-//  RoomsService.swift
+//  RoomsAPI.swift
 //  Roomr
 //
 //  Created by Necati Aydın on 10/11/2021.
@@ -23,7 +23,7 @@ struct RoomListResponseDTO: DTO {
     let rooms: [RoomDTO]
 }
 
-class RoomsService {
+class RoomsAPI {
     func getRooms() async -> [Room] {
         let request = RoomListRequest()
         guard let roomDTOs = await NetworkManager.shared.make(request: request)?.rooms else {
