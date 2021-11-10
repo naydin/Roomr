@@ -34,7 +34,7 @@ class RoomsAPI {
             Room(imageURL: roomDTO.thumbnail,
                  name: roomDTO.name,
                  spots: roomDTO.spots,
-                 isBooked: false)//TODO: fix isbooked
+                 isBooked: false)
         }
     }
 }

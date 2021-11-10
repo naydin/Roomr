@@ -31,23 +31,27 @@ struct RoomsView: View {
     @ObservedObject var viewModel: RoomsViewModel
     
     var body: some View {
-        GeometryReader { proxy in
-            List {
-                ForEach(viewModel.rooms, id: \.self) { (room: Room)  in
-                    RoomRow(
-                        viewModel: viewModel,
-                        imageURL: room.imageURL,
-                        title: room.name,
-                        spots: room.spots,
-                        isBooked: room.isBooked,
-                        width: proxy.size.width
-                    )
-                        .listRowInsets(EdgeInsets())
+        NavigationView {
+            GeometryReader { proxy in
+                List {
+                    ForEach(viewModel.rooms, id: \.self) { (room: Room)  in
+                        RoomRow(
+                            viewModel: viewModel,
+                            imageURL: room.imageURL,
+                            title: room.name,
+                            spots: room.spots,
+                            isBooked: room.isBooked,
+                            width: proxy.size.width
+                        )
+                            .listRowInsets(EdgeInsets())
+                    }
+                    
+                    .listRowSeparator(.hidden)
                 }
-                
-                .listRowSeparator(.hidden)
+                .listStyle(.grouped)
+                //TODO: padded rows
             }
-            .listStyle(.grouped)
+            .navigationTitle("Rooms")
         }
         .onAppear {
             viewModel.startSyncingData()
@@ -73,10 +77,8 @@ private struct RoomRow: View {
                 image
                     .resizable()
                     .scaledToFill()
-//                    .aspectRatio(16.0/9.0, contentMode: .fit)
-                    
             } placeholder: {
-                Rectangle()
+                Rectangle().foregroundColor(.gray)//TODO: Placeholder
             }
             .frame(width: width, height: width * 9.0 / 16.0)
             .clipped()
@@ -98,6 +100,7 @@ private struct RoomRow: View {
                         viewModel.book(roomName: title)
                     }
                     .buttonStyle(BookButtonStyle())
+                    .disabled(isBooked)
                 }
                 .padding()
                 .background(Material.ultraThin)
