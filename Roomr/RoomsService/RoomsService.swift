@@ -17,6 +17,12 @@ class RoomsService {
         await database.save(rooms: rooms)
     }
     
+    func book(roomName: String) {
+        Task {
+            await database.book(roomName: roomName)
+        }
+    }
+    
     func roomsPublisher() -> AnyPublisher<[Room], Error> {
         database.roomsPublisher()
     }

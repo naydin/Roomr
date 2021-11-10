@@ -12,5 +12,5 @@ class RoomObject: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var name: String = ""
     @Persisted var spots: Int = 0
     @Persisted var imageURL: String = ""
-    @Persisted var isBooked: Bool = false
+    @Persisted var isBooked: Bool?
 }

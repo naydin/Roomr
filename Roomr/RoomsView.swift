@@ -8,6 +8,24 @@
 import SwiftUI
 import Combine
 
+extension Color {
+    static var app: Color {
+        Color(red: 159.0/256.0, green: 0, blue: 134.0/256.0)
+    }
+}
+
+struct BookButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .font(.headline)
+            .padding(.vertical, 8)
+            .padding(.horizontal, 16)
+            .foregroundColor(configuration.isPressed ? Color.white.opacity(0.5) : Color.white)
+            .background(Color.app)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+}
+
 struct RoomsView: View {
     
     @ObservedObject var viewModel: RoomsViewModel
@@ -17,14 +35,16 @@ struct RoomsView: View {
             List {
                 ForEach(viewModel.rooms, id: \.self) { (room: Room)  in
                     RoomRow(
+                        viewModel: viewModel,
                         imageURL: room.imageURL,
                         title: room.name,
                         spots: room.spots,
                         isBooked: room.isBooked,
                         width: proxy.size.width
                     )
+                        .listRowInsets(EdgeInsets())
                 }
-                .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: -8))
+                
                 .listRowSeparator(.hidden)
             }
             .listStyle(.grouped)
@@ -38,7 +58,9 @@ struct RoomsView: View {
     }
 }
 
-struct RoomRow: View {
+private struct RoomRow: View {
+    @ObservedObject var viewModel: RoomsViewModel
+    
     let imageURL: URL
     let title: String
     let spots: Int
@@ -62,11 +84,23 @@ struct RoomRow: View {
             VStack {
                 Spacer()
                 
-                HStack {
-                    Text(title)
+                HStack(alignment: .bottom) {
+                    VStack(alignment: .leading) {
+                        Text(title)
+                            .font(.headline)
+                        Text("\(isBooked ? (spots - 1) : spots) spots remaining")
+                            .font(.subheadline)
+                            .foregroundColor(.app)
+                    }
+                    
                     Spacer()
+                    Button(isBooked ? "Booked" : "Book!") {
+                        viewModel.book(roomName: title)
+                    }
+                    .buttonStyle(BookButtonStyle())
                 }
-                .background(Material.thin)
+                .padding()
+                .background(Material.ultraThin)
                 .frame(height: 60)
             }
         }
@@ -100,6 +134,10 @@ class RoomsViewModel: ObservableObject {
     func stopSyncingData() {
         cancellables = Set<AnyCancellable>()
     }
+    
+    func book(roomName: String) {
+        service.book(roomName: roomName)
+    }
 }
 
 struct RoomsView_Previews: PreviewProvider {
@@ -116,5 +154,9 @@ struct RoomsView_Previews: PreviewProvider {
                  isBooked: false)
         ]
         return RoomsView(viewModel: viewModel)
+//        return RoomRow(imageURL: URL(string:  "https://images.unsplash.com/photo-1571624436279-b272aff752b5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1504&q=80")!,
+//                       title: "Ljerka",
+//                       spots: 43,
+//                       isBooked: false, width: 375)
     }
 }
