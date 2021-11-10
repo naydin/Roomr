@@ -90,22 +90,36 @@ private struct RoomRow: View {
                     VStack(alignment: .leading) {
                         Text(title)
                             .font(.headline)
-                        Text("\(isBooked ? (spots - 1) : spots) spots remaining")
+                        Text(spotsTitle)
                             .font(.subheadline)
                             .foregroundColor(.app)
                     }
                     
                     Spacer()
-                    Button(isBooked ? "Booked" : "Book!") {
-                        viewModel.book(roomName: title)
+                    if hasSpots {
+                        Button(isBooked ? "Booked" : "Book!") {
+                            viewModel.book(roomName: title)
+                        }
+                        .buttonStyle(BookButtonStyle())
+                        .disabled(isBooked)
                     }
-                    .buttonStyle(BookButtonStyle())
-                    .disabled(isBooked)
                 }
                 .padding()
                 .background(Material.ultraThin)
                 .frame(height: 60)
             }
+        }
+    }
+    
+    private var hasSpots: Bool {
+        spots > 0
+    }
+    
+    private var spotsTitle: String {
+        if hasSpots {
+            return "\(isBooked ? (spots - 1) : spots) spots remaining"
+        } else {
+            return "No spots available"
         }
     }
 }
