@@ -29,6 +29,9 @@ struct RoomsView: View {
             }
             .listStyle(.grouped)
         }
+        .onAppear {
+            viewModel.syncData()
+        }
     }
 }
 
@@ -76,6 +79,20 @@ struct Room: Hashable {
 
 class RoomsViewModel: ObservableObject {
     @Published var rooms: [Room] = []
+    private let service = RoomsService()
+    
+    
+    func syncData() {
+        Task {
+            let rooms = await service.getRooms()
+            await assign(rooms: rooms)
+        }
+    }
+    
+    @MainActor
+    func assign(rooms: [Room]) {
+        self.rooms = rooms
+    }
 }
 
 struct RoomsView_Previews: PreviewProvider {

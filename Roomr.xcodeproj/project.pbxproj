@@ -16,6 +16,8 @@
 		767D5B67273BCA69002319E2 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 767D5B66273BCA69002319E2 /* Realm */; };
 		767D5B69273BCA69002319E2 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 767D5B68273BCA69002319E2 /* RealmSwift */; };
 		767D5B6B273BCBD3002319E2 /* RoomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D5B6A273BCBD3002319E2 /* RoomsView.swift */; };
+		767D5B6E273BD67E002319E2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D5B6D273BD67E002319E2 /* NetworkManager.swift */; };
+		767D5B70273BDB01002319E2 /* RoomsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D5B6F273BDB01002319E2 /* RoomsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		767D5B56273BC98C002319E2 /* RoomrUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomrUITests.swift; sourceTree = "<group>"; };
 		767D5B58273BC98C002319E2 /* RoomrUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomrUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		767D5B6A273BCBD3002319E2 /* RoomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsView.swift; sourceTree = "<group>"; };
+		767D5B6D273BD67E002319E2 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		767D5B6F273BDB01002319E2 /* RoomsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,7 @@
 		767D5B3A273BC98B002319E2 /* Roomr */ = {
 			isa = PBXGroup;
 			children = (
+				767D5B6C273BD66A002319E2 /* Network */,
 				767D5B3B273BC98B002319E2 /* RoomrApp.swift */,
 				767D5B3F273BC98C002319E2 /* Assets.xcassets */,
 				767D5B41273BC98C002319E2 /* Preview Content */,
@@ -129,6 +134,15 @@
 				767D5B58273BC98C002319E2 /* RoomrUITestsLaunchTests.swift */,
 			);
 			path = RoomrUITests;
+			sourceTree = "<group>";
+		};
+		767D5B6C273BD66A002319E2 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				767D5B6D273BD67E002319E2 /* NetworkManager.swift */,
+				767D5B6F273BDB01002319E2 /* RoomsService.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,7 +282,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				767D5B6E273BD67E002319E2 /* NetworkManager.swift in Sources */,
 				767D5B6B273BCBD3002319E2 /* RoomsView.swift in Sources */,
+				767D5B70273BDB01002319E2 /* RoomsService.swift in Sources */,
 				767D5B3C273BC98B002319E2 /* RoomrApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
